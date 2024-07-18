@@ -3,6 +3,12 @@ function tocaSomPom(){
     document.querySelector('#som_tecla_pom').play();
 }
 
-// Utliza o document para acessar o documento html
-document.querySelector('.tecla_pom');
+function tocaSomClap(){
+    // Executar som
+    document.querySelector('#som_tecla_clap').play();
+}
+// É preciso tirar os parenteses para fazer a atribuição no onclick
+document.querySelector('.tecla_pom').onclick = tocaSomPom;
 
+// Lista de classes
+document.querySelectorAll('.tecla');
