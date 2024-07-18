@@ -1,6 +1,6 @@
-function tocaSomPom(){
+function tocaSom(idElementoAudio){
     // Executar som
-    document.querySelector('#som_tecla_pom').play();
+    document.querySelector(idElementoAudio).play();
 }
 
 // Lista de classes
@@ -8,10 +8,10 @@ document.querySelectorAll('.tecla');
 
 const listaDeTeclas = document.querySelectorAll('.tecla');
 
-listaDeTeclas[0].onclick = tocaSomPom;
+let contador = 0;
 
 while(contador < listaDeTeclas.length){
-    listaDeTeclas[contador].onclick = tocaSomPom;
+    listaDeTeclas[contador].onclick = tocaSom;
 
     contador = contador + 1;
 
