@@ -15,8 +15,14 @@ for (let contador = 0; contador < listaDeTeclas.length; contador++) {
         tocaSom(idAudio);
     }
 
+    // Aperta o botão
     tecla.onkeydown = function () {
         tecla.classList.add('ativa');
+    }
+
+    // Solta o botão
+    tecla.onkeyup = function () {
+        tecla.classList.remove('ativa');
     }
 
 }
