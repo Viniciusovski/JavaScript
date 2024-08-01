@@ -7,6 +7,7 @@ const titulo = document.querySelector('.app__title')
 const botoes = document.querySelectorAll('.app__card-button')
 const startPauseBt = document.querySelector('#start-pause')
 const musicaFocoInput = document.querySelector('#alternar-musica')
+const iniciarOuPausarBt = document.querySelector('#start-pause span')
 const musica = new Audio('/sons/luna-rise-part-one.mp3')
 const musicaPlay = new Audio('/sons/play.wav')
 const musicaPause = new Audio('/sons/pause.mp3')
@@ -84,9 +85,9 @@ const contagemRegressiva = () =>{
         }else{
             musicaBeep.pause()
         }
-        
-        zerar()
-        alert('Tempo finalizado!')
+
+        alert('Tempo finalizado!')        
+        zerar()        
         return
     }
     tempoDecorridoEmSegundos -= 1
@@ -113,9 +114,11 @@ function iniciarOuPausar(){
     }
     // Executa o método em um tempo de 1 segundo
     intervaloId = setInterval(contagemRegressiva, 1000)
+    iniciarOuPausarBt.textContent = "Pausar"
 }
 
 function zerar(){
     clearInterval(intervaloId)
+    iniciarOuPausarBt.textContent = "Começar"
     intervaloId = null
 }
