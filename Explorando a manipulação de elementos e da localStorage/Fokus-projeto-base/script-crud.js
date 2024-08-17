@@ -23,5 +23,6 @@ formAddTarefa.addEventListener('submit', (event) => {
     tarefas.push(tarefa)
 
     // Guarda a lista de tarefas no localStorage
-    localStorage.setItem('tarefas', tarefas)
+    // JSON.stringfy converte um objeto em uma string
+    localStorage.setItem('tarefas', JSON.stringify(tarefas))
 })
