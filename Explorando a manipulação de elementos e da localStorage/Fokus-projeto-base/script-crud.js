@@ -22,8 +22,10 @@ function criarElementoTarefa(tarefa) {
         `
     const paragrafo = document.createElement('p')
     paragrafo.textContent = tarefa.descricao
+    paragrafo.classList.add('app__section-task-list-item-description')
 
     const butao = document.createElement('button')
+    butao.classList.add('app__button-edit')
     const imagemBotao = document.createElement('img')
     imagemBotao.setAttribute('src', '/imagens/edit.png')
 
@@ -51,10 +53,16 @@ formAddTarefa.addEventListener('submit', (event) => {
     }
     // Adicionar objeto tarefa ao array
     tarefas.push(tarefa)
+    const elementoTarefa = criarElementoTarefa(tarefa)
+    ulTarefas.append(elementoTarefa)
 
     // Guarda a lista de tarefas no localStorage
     // JSON.stringfy converte um objeto em uma string
     localStorage.setItem('tarefas', JSON.stringify(tarefas))
+
+    // Limpar e esconder o textArea
+    textArea.value = ''
+    formAddTarefa.classList.add('hidden')
 })
 
 tarefas.forEach(tarefa =>{
