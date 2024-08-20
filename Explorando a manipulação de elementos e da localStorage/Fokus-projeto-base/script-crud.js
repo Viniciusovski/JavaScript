@@ -3,8 +3,9 @@
 const btnAdicionarTarefa = document.querySelector('.app__button--add-task')
 const formAddTarefa = document.querySelector('.app__form-add-task')
 const textArea = document.querySelector('.app__form-textarea')
+const ulTarefas = document.querySelector('.app__section-task-list')
 
-const tarefas = []
+const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 
 function criarElementoTarefa(tarefa) {
     const li = document.createElement('li')
@@ -27,11 +28,12 @@ function criarElementoTarefa(tarefa) {
     imagemBotao.setAttribute('src', '/imagens/edit.png')
 
     imagemBotao.append(imagemBotao)
-    
+
     li.append(svg)
     li.append(paragrafo)
     li.append(butao)    
     
+    return li
 }
 
 btnAdicionarTarefa.addEventListener('click', () => {
@@ -53,4 +55,9 @@ formAddTarefa.addEventListener('submit', (event) => {
     // Guarda a lista de tarefas no localStorage
     // JSON.stringfy converte um objeto em uma string
     localStorage.setItem('tarefas', JSON.stringify(tarefas))
+})
+
+tarefas.forEach(tarefa =>{
+    const elementoTarefa = criarElementoTarefa(tarefa)
+    ulTarefas.append(elementoTarefa)
 })
