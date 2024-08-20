@@ -32,10 +32,14 @@ function criarElementoTarefa(tarefa) {
     butao.classList.add('app__button-edit')
 
     butao.onclick = () => {
+        // debugger
         const novaDescricao = prompt("Qual é o novo nome da tarefa?")
-        paragrafo.textContent = novaDescricao
-        tarefa.descricao = novaDescricao
-        atualizarTarefas()
+        // Se não for nulo ou vazio retorna true
+        if(novaDescricao){            
+            paragrafo.textContent = novaDescricao
+            tarefa.descricao = novaDescricao
+            atualizarTarefas()
+        }
         
     }
 
