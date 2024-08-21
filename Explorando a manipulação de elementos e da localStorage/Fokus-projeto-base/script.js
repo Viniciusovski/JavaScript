@@ -92,7 +92,12 @@ const contagemRegressiva = () =>{
             musicaBeep.pause()
         }
 
-        alert('Tempo finalizado!')        
+        alert('Tempo finalizado!')
+        const focoAtivo = html.getAttribute('data-contexto') == 'foco'
+        if(focoAtivo){
+            const evento = new CustomEvent('FocoFinalizado')
+            document.dispatchEvent(evento)
+        }
         zerar()        
         return
     }
