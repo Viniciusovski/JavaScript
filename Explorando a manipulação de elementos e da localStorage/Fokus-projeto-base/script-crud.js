@@ -54,25 +54,33 @@ function criarElementoTarefa(tarefa) {
     li.append(svg)
     li.append(paragrafo)
     li.append(butao)
-    li.onclick = () => {
-        document.querySelectorAll('app__section-task-list-item--active')
-        .forEach(elemento => {
-            elemento.classList.remove('app__section-task-list-item--active')
-        })
-        if(tarefaSelecionada == tarefa){
-            paragrafoDescricaoTarefa.textContent = ''
-            tarefaSelecionada = null
-            liTarefaSelecionada = null
 
-            // Early return
-            return
+    if(tarefa.completa){
+        li.classList.add('app__section-task-list-item--complete')
+        butao.setAttribute('disabled', 'disabled')
+    }else{
+
+        li.onclick = () => {
+            document.querySelectorAll('app__section-task-list-item--active')
+            .forEach(elemento => {
+                elemento.classList.remove('app__section-task-list-item--active')
+            })
+            if(tarefaSelecionada == tarefa){
+                paragrafoDescricaoTarefa.textContent = ''
+                tarefaSelecionada = null
+                liTarefaSelecionada = null
+    
+                // Early return
+                return
+            }
+            tarefaSelecionada = tarefa
+            liTarefaSelecionada = li
+            paragrafoDescricaoTarefa.textContent = paragrafo.textContent
+           
+            li.classList.add('app__section-task-list-item--active')
         }
-        tarefaSelecionada = tarefa
-        liTarefaSelecionada = li
-        paragrafoDescricaoTarefa.textContent = paragrafo.textContent
-       
-        li.classList.add('app__section-task-list-item--active')
     }
+
     
     return li
 }
@@ -114,5 +122,7 @@ document.addEventListener('FocoFinalizado', () => {
         liTarefaSelecionada.classList.remove('app__section-task-list-item--active')
         liTarefaSelecionada.classList.add('app__section-task-list-item--complete')
         liTarefaSelecionada.querySelector('button').setAttribute('disabled', 'disabled')
+        tarefaSelecionada.completa = true
+        atualizarTarefas()
     }
 })
